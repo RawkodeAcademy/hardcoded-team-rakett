@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: normalizer
+  namespace: team-rakett
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - team-rakett.hardcoded.live
+  rules:
+    - host: team-rakett.hardcoded.live
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aggregatordotnet
+                port:
+                  number: 8080

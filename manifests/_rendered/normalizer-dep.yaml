@@ -13,7 +13,7 @@ spec:
         app: normalizer
     spec:
       containers:
-        - image: ttl.sh/normalizer:latest
+        - image: ttl.sh/normalizer:2m
           name: normalizer
           securityContext:
             allowPrivilegeEscalation: false
