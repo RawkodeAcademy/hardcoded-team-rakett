@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +19,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", (NormalizerRequest request) =>
+app.MapPost("/", ([FromBody] NormalizerRequest request) =>
 {
-    var normalized = request.Text.Normalize(NormalizationForm.FormKC);
+    var normalized = request.Text.Normalize(NormalizationForm.FormKC).ToLower();
+    
     return new NormalizerResponse(normalized);
 }).WithName("Normalize");
 
