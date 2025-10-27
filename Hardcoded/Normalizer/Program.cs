@@ -1,7 +1,9 @@
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Normalizer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,13 @@ app.UseHttpsRedirection();
 
 app.MapPost("/", ([FromBody] NormalizerRequest request) =>
 {
-    var normalized = request.Text.Normalize(NormalizationForm.FormKC).ToLower();
+    var normalized = request.Text
+        .Normalize(NormalizationForm.FormKC)
+        .ToLower()
+        .Trim();
+    
+    normalized = Regex.Replace(normalized, @"\s+", " ");
+    normalized = normalized.RemoveDiacritics();
     
     return new NormalizerResponse(normalized);
 }).WithName("Normalize");
