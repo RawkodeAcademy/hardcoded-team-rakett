@@ -13,7 +13,7 @@ spec:
         app: tokenizer
     spec:
       containers:
-        - image: ttl.sh/tokenizer:1m
+        - image: ttl.sh/tokenizer:latest
           name: tokenizer
           securityContext:
             allowPrivilegeEscalation: false
