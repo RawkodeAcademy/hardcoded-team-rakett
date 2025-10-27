@@ -3,8 +3,8 @@ const app = express();
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 
-const NORMALIZER_URL = process.env.NORMALIZER_URL || 'http://localhost:8080';
-const TOKENIZER_URL = process.env.TOKENIZER_URL || 'http://localhost:8080';
+const NORMALIZER_URL = process.env.NORMALIZER_URL || 'http://normalizer:8080';
+const TOKENIZER_URL = process.env.TOKENIZER_URL || 'http://tokenizer:8080';
 
 app.use(express.json());
 
