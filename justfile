@@ -24,9 +24,22 @@ run-tokenizer TAG="latest":
   docker build -t tokenizer .
   docker run -p 3000:3000 tokenizer
 
+[working-directory: "Hardcoded/Aggregator"]
+build-aggregator TAG="latest":
+  docker build -t ttl.sh/aggregator:{{TAG}} .
+  docker push ttl.sh/aggregator:{{TAG}}
+
+[working-directory: "Hardcoded/Aggregator"]
+run-aggregator TAG="latest":
+  docker build -t aggregator .
+  docker run -p 8080:8080 aggregator
+
 build TAG="1m":
-  just build-normalizer {{TAG}}
+  just build-normalizer {{TAG}}  curl -X POST http://localhost:4000/analyze \
+    -H "Content-Type: application/json" \
+    -d '{"text": "Hello World!"}'
   just build-tokenizer {{TAG}}
+  just build-aggregator {{TAG}}
 
 [working-directory: "manifests"]
 render TAG="latest":
