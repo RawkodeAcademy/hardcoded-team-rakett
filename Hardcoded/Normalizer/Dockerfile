@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Normalizer/Normalizer.csproj", "Normalizer/"]
+COPY ["Normalizer.csproj", "Normalizer/"]
 RUN dotnet restore "Normalizer/Normalizer.csproj"
 COPY . .
 WORKDIR "/src/Normalizer"
