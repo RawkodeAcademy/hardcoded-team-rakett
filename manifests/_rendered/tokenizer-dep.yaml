@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tokenizer
+  namespace: team-rakett
+spec:
+  selector:
+    matchLabels:
+      app: tokenizer
+  template:
+    metadata:
+      labels:
+        app: tokenizer
+    spec:
+      containers:
+        - image: ttl.sh/tokenizer:1m
+          name: tokenizer
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+      securityContext:
+        runAsUser: 10002
