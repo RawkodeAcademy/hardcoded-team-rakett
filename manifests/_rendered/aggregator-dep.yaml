@@ -13,7 +13,7 @@ spec:
         app: aggregator
     spec:
       containers:
-        - image: ttl.sh/aggregator:1m
+        - image: ttl.sh/aggregator:2m
           name: aggregator
           securityContext:
             allowPrivilegeEscalation: false

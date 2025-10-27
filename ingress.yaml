@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aggregator
+                name: aggregatordotnet
                 port:
                   number: 8080

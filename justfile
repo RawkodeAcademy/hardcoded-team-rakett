@@ -66,7 +66,7 @@ test TAG="1m":
   just run-normalizer
   just run-tokenizer
 
-all:
-  just build 1m
-  just render 1m
+all TAG="latest":
+  just build  {{TAG}}
+  just render  {{TAG}}
   just apply
