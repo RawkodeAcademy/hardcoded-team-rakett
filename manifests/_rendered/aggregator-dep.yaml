@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tokenizer
+  name: aggregator
   namespace: team-rakett
 spec:
   selector:
     matchLabels:
-      app: tokenizer
+      app: aggregator
   template:
     metadata:
       labels:
-        app: tokenizer
+        app: aggregator
     spec:
       containers:
-        - image: ttl.sh/tokenizer:1m
-          name: tokenizer
+        - image: ttl.sh/aggregator:1m
+          name: aggregator
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
