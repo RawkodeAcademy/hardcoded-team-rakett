@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +18,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () =>
 {
-    
+    return "ok";
 }).WithName("Normalize");
 
 app.Run();
