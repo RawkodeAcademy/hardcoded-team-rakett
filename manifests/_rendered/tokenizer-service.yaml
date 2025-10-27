@@ -1,23 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: tokenizer
   namespace: team-rakett
 spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
-    matchLabels:
-      app: tokenizer
-  template:
-    metadata:
-      labels:
-        app: tokenizer
-    spec:
-      containers:
-        - image: ttl.sh/tokenizer:1m
-          name: tokenizer
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-      securityContext:
-        runAsUser: 10002
+    app: tokenizer
+  type: ClusterIP

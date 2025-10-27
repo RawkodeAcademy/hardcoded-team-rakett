@@ -1,23 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: normalizer
   namespace: team-rakett
 spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
-    matchLabels:
-      app: normalizer
-  template:
-    metadata:
-      labels:
-        app: normalizer
-    spec:
-      containers:
-        - image: ttl.sh/normalizer:1m
-          name: normalizer
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-      securityContext:
-        runAsUser: 10002
+    app: normalizer
+  type: ClusterIP

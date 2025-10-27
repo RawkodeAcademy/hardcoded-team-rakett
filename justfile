@@ -31,9 +31,9 @@ build TAG="1m":
 [working-directory: "manifests"]
 render TAG="latest":
   cue export --out yaml -t name=normalizer -t tag={{TAG}} -t image=ttl.sh/normalizer | yq .deployment > _rendered/normalizer-dep.yaml
-  cue export --out yaml -t name=normalizer -t tag={{TAG}} -t image=ttl.sh/normalizer | yq .deployment > _rendered/normalizer-service.yaml
+  cue export --out yaml -t name=normalizer -t tag={{TAG}} -t image=ttl.sh/normalizer | yq .service > _rendered/normalizer-service.yaml
   cue export --out yaml -t name=tokenizer -t tag={{TAG}} -t image=ttl.sh/tokenizer | yq .deployment > _rendered/tokenizer-dep.yaml
-  cue export --out yaml -t name=tokenizer -t tag={{TAG}} -t image=ttl.sh/tokenizer | yq .deployment > _rendered/tokenizer-service.yaml
+  cue export --out yaml -t name=tokenizer -t tag={{TAG}} -t image=ttl.sh/tokenizer | yq .service > _rendered/tokenizer-service.yaml
 
 apply:
   kubectl apply -f manifests/_rendered/
