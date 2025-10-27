@@ -11,7 +11,7 @@ build-normalizer TAG="latest":
 [working-directory: "Hardcoded/Normalizer"]
 run-normalizer TAG="latest":
   docker build -t normalizer .
-  docker run -p 5037:5037 normalizer
+  docker run -p 5037:8080 normalizer
 
 [working-directory: "Hardcoded/Tokenizer"]
 build-tokenizer TAG="latest":
